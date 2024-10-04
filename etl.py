@@ -1,21 +1,21 @@
 import pandas as pd
 import os
 import glob
-# uma funcao de extract que le e consolida json
 
-#glob listar qualquer biblioteca sempre quando quiser colocar qualquer nome coloca *
+# Definindo a pasta onde os arquivos JSON estão armazenados
 pasta = 'data'
+
 def extrair_dados(path: str) -> pd.DataFrame:
+    # Listando todos os arquivos JSON na pasta especificada
     arquivos_json = glob.glob(os.path.join(pasta, '*.json'))
+    
+    # Lendo cada arquivo JSON e armazenando em uma lista de DataFrames
     df_list = [pd.read_json(arquivo) for arquivo in arquivos_json]
-    #Concatenar dataframe
+    
+    # Concatenando todos os DataFrames em um único DataFrame
     df_total = pd.concat(df_list, ignore_index=True)
-    return(df_total)
+    
+    return df_total
 
+# Chamando a função e imprimindo o DataFrame consolidado
 print(extrair_dados(path=pasta))
-    #print(df_total)
-# uma funcao que transforma
-
-# uma funcao que le load em csv ou parquet
-
-
